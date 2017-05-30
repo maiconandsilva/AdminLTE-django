@@ -21,6 +21,7 @@ parts/
 sdist/
 var/
 wheels/
+virtEnv/
 *.egg-info/
 .installed.cfg
 *.egg
