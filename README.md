@@ -16,6 +16,21 @@ Installation
 3) Run the command 'pip install -r requirements.txt'
 4) Run the command 'python manage.py runserver'
 
+Viewable
+---------
+* Dashboard
+  * Dashboard 1
+  * Dashboard 2
+* Widgets
+* Charts
+  * ChartJS
+  * Morris
+  * Flot
+  * Inline charts
+* Tables
+  * Simple tables
+  * Data tables
+* Calendar
 
 TODO:
 * Installation
