@@ -106,3 +106,27 @@ def inlineCharts(request, error=None, info=None, success=None, warning=None):
 	if success:
 		context['success'] = str(success)
 	return render(request, 'pages/charts/inline.html', {'context': context})
+
+def data(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Data Tables'}
+	if error:
+		context['error'] = str(error)
+	if info:
+		context['info'] = str(info)
+	if warning:
+		context['warning'] = str(warning)
+	if success:
+		context['success'] = str(success)
+	return render(request, 'pages/tables/data.html', {'context': context})
+
+def simple(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Simple Tables'}
+	if error:
+		context['error'] = str(error)
+	if info:
+		context['info'] = str(info)
+	if warning:
+		context['warning'] = str(warning)
+	if success:
+		context['success'] = str(success)
+	return render(request, 'pages/tables/simple.html', {'context': context})

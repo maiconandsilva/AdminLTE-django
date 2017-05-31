@@ -108,7 +108,7 @@
           <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
         </ul>
       </li>
-      <li class="treeview">
+      <li {% if request.resolver_match.url_name == 'simple' or request.resolver_match.url_name == 'data' %} class="active treeview" {% else %} class="treeview"  {% endif %}>
         <a href="#">
           <i class="fa fa-table"></i> <span>Tables</span>
           <span class="pull-right-container">
@@ -116,8 +116,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-          <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+          <li {% if request.resolver_match.url_name == 'simple' %} class="active" {% endif %}><a href="{% url 'webappdemo:simple' %}"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+          <li {% if request.resolver_match.url_name == 'data' %} class="active" {% endif %}><a href="{% url 'webappdemo:data' %}"><i class="fa fa-circle-o"></i> Data tables</a></li>
         </ul>
       </li>
       <li {% if request.resolver_match.url_name == 'calendar' %} class="active" {% endif %}>

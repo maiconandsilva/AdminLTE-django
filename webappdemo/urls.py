@@ -19,4 +19,9 @@ urlpatterns = [
 	url(r'^flot/$', views.flotCharts, name='flotCharts'),
 	url(r'^inline/$', views.inlineCharts, name='inlineCharts'),
 	
+	##############
+	### Tables ###
+	##############
+	url(r'^simple/$', views.simple, name='simple'),
+	url(r'^data/$', views.data, name='data'),
 ]
