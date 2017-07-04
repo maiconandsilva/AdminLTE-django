@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ context.title }}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  {% include "webappdemo/adminLTE_styles.html" %}
+
+  {% block styles2 %}
+  {% endblock %}
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  {% include "webappdemo/adminLTE_header.html" %}
+
+  {% include "webappdemo/adminLTE_sidebar.html" %}
+
+  <div class="content-wrapper">
+  	{% csrf_token %}
+  	{% block content_wrapper %}
+  	{% endblock %}
+  </div>
+
+  {% include "webappdemo/adminLTE_footer.html" %}
+
+  {% include "webappdemo/adminLTE_controlSidebar.html" %}
+</div>
+
+{% include "webappdemo/adminLTE_plugins.html" %}
+
+{% block js_plugins2 %}
+{% endblock %}
+
+</body>
+</html>

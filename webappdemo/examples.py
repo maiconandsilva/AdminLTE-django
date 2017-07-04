@@ -11,32 +11,8 @@ from django.contrib.auth.decorators import login_required
 import templateholder
 
 # Create your views here.
-def index(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Dashboard'}
-	if error:
-		context['error'] = str(error)
-	if info:
-		context['info'] = str(info)
-	if warning:
-		context['warning'] = str()
-	if success:
-		context['success'] = str(success)
-	return render(request, 'webappdemo/adminLTE_contentWrapper.html', {'context': context})
-
-def index2(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Dashboard 2'}
-	if error:
-		context['error'] = str(error)
-	if info:
-		context['info'] = str(info)
-	if warning:
-		context['warning'] = str()
-	if success:
-		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/index2.html', {'context': context})
-
-def calendar(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Calendar'}
+def page404(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | 404 Error Page'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -45,10 +21,10 @@ def calendar(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/calendar.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/404.html', {'context': context})
 
-def widgets(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Widgets'}
+def page500(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | 500 Error Page'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -57,10 +33,10 @@ def widgets(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/widgets.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/500.html', {'context': context})
 
-def chartjs(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | ChartJS'}
+def blank(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Blank Page'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -69,10 +45,10 @@ def chartjs(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/charts/chartjs.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/blank.html', {'context': context})
 
-def morrisCharts(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Morris Charts'}
+def invoice(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Invoice'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -81,10 +57,10 @@ def morrisCharts(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/charts/morris.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/invoice.html', {'context': context})
 
-def flotCharts(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Flot Charts'}
+def invoice_print(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Invoice'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -93,10 +69,10 @@ def flotCharts(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/charts/flot.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/invoice-print.html', {'context': context})
 
-def inlineCharts(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Inline Charts'}
+def lockscreen(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Lockscreen'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -105,10 +81,10 @@ def inlineCharts(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/charts/inline.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/lockscreen.html', {'context': context})
 
-def data(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Data Tables'}
+def loginpage(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Login'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -117,10 +93,10 @@ def data(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/tables/data.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/login.html', {'context': context})
 
-def simple(request, error=None, info=None, success=None, warning=None):
-	context = {'title':'AdminLTE 2 | Simple Tables'}
+def registerpage(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Register'}
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -129,4 +105,28 @@ def simple(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'webappdemo/pages/tables/simple.html', {'context': context})
+	return render(request, 'webappdemo/pages/examples/register.html', {'context': context})
+
+def pacepage(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Pace Page'}
+	if error:
+		context['error'] = str(error)
+	if info:
+		context['info'] = str(info)
+	if warning:
+		context['warning'] = str(warning)
+	if success:
+		context['success'] = str(success)
+	return render(request, 'webappdemo/pages/examples/pace.html', {'context': context})
+
+def profile(request, error=None, info=None, success=None, warning=None):
+	context = {'title':'AdminLTE 2 | Profile'}
+	if error:
+		context['error'] = str(error)
+	if info:
+		context['info'] = str(info)
+	if warning:
+		context['warning'] = str(warning)
+	if success:
+		context['success'] = str(success)
+	return render(request, 'webappdemo/pages/examples/profile.html', {'context': context})
