@@ -2,9 +2,15 @@
 Easy AdminLTE integration with Django 1.11
 This package provides an easy way to quickly set up [AdminLTE](https://almsaeedstudio.com) with Django. It has no requirements and dependencies besides Django, so you can start building your admin panel immediately. 
 
-Goals (What's coming)
+What's Coming
 ============
-* Finish Implementation
+* loginManager app
+  * Add Forget Password Template
+  * Add Forget Username Template
+  * Add Email Setup Documentaiton
+* dataTables app
+  * datatableworker Documentation
+  * datatabletemplate with javascript to convert fields to columns and add to html
 * Convert demo.js to django/python code
 * Set up backend for Mobile (Django Rest Framework)
 
@@ -16,23 +22,7 @@ Installation
 3) Run the command 'pip install -r requirements.txt'
 4) Run the command 'python manage.py runserver'
 
-Viewable
----------
-* Dashboard
-  * Dashboard 1
-  * Dashboard 2
-* Widgets
-* Charts
-  * ChartJS
-  * Morris
-  * Flot
-  * Inline charts
-* Tables
-  * Simple tables
-  * Data tables
-* Calendar
-
-TODO:
+ReadMe Updates Coming:
 * Installation
 * Updating
 * Usage
