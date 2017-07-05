@@ -39,6 +39,7 @@
     <p class="login-box-msg">Register a new membership</p>
 
     <form action="{% url 'webappdemo:dashboard2' %}" method="post">
+    {% csrf_token %}
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Full name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

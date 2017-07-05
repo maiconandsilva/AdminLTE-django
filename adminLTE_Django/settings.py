@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webappdemo.apps.WebappdemoConfig',
+    'loginManager.apps.LoginmanagerConfig',
+    'dataTables.apps.DatatablesConfig',
     'templateholder.apps.TemplateholderConfig'
 ]
 

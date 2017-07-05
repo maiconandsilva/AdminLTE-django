@@ -9,6 +9,9 @@ import widgets
 import charts
 import tables
 import examples
+import ui
+import mailbox
+import forms_page
 
 app_name='webappdemo'
 urlpatterns = [
@@ -44,13 +47,17 @@ urlpatterns = [
 	### Forms ####
 	##############
 
-	##############
-	### Layout ###
-	##############
+	url(r'^advanced/$', forms_page.advanced, name='advanced'),
+	url(r'^editors/$', forms_page.editors, name='editors'),
+	url(r'^general_forms/$', forms_page.general_forms, name='general_forms'),
 
 	###############
 	### Mailbox ###
 	###############
+
+	url(r'^compose/$', mailbox.compose, name='compose'),
+	url(r'^mailbox/$', mailbox.mailbox, name='mailbox'),
+	url(r'^read-mail/$', mailbox.read_mail, name='read-mail'),
 
 	##############
 	### Tables ###
@@ -61,4 +68,11 @@ urlpatterns = [
 	##########
 	### UI ###
 	##########
+
+	url(r'^buttons/$', ui.buttons, name='buttons'),
+	url(r'^general/$', ui.general, name='general'),
+	url(r'^icons/$', ui.icons, name='icons'),
+	url(r'^modals/$', ui.modals, name='modals'),
+	url(r'^sliders/$', ui.sliders, name='sliders'),
+	url(r'^timeline/$', ui.timeline, name='timeline'),
 ]
