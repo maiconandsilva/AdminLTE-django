@@ -37,22 +37,31 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-
+    {% if context.error %}
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> We have an Issue!</h4>
+      {{ context.error }}
+    </div>
+    {% endif %}
     <form action="{% url 'loginManager:login_user' %}" method="post">
     {% csrf_token %}
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username">
+        {{ loginForm.username }}
+        <!--<input type="text" class="form-control" placeholder="Username" name="username"> -->
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
+        {{ loginForm.password }}
+        <!--<input type="password" class="form-control" placeholder="Password" name="password">-->
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+            {{ loginForm.remember_me }}
+            <!--<input type="checkbox">--> Remember Me 
             </label>
           </div>
         </div>

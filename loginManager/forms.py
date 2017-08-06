@@ -1,9 +1,10 @@
 from django import forms
+from django.contrib.auth.models import User
 
 class LoginPage(forms.Form):
-	username = forms.CharField(label='username', max_length=32, required=True, error_messages={'required': 'Please enter your Username'})
-	password = forms.CharField(label='password', max_length=32, required=True, error_messages={'required': 'Please enter your Password'})
-	#remember_me = forms.BooleanField(label='Rememberme',required=False)
+	username = forms.CharField(label='Username', max_length=32, required=True, error_messages={'required': 'Please enter your Username'}, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class' : 'form-control'}))
+	password = forms.CharField(label='Password', max_length=32, required=True, error_messages={'required': 'Please enter your Password'}, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class' : 'form-control'}))
+	remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput())
 
 class ForgetPage(forms.Form):
 	forget_email = forms.EmailField(label='forget_email', max_length=64, required=True, error_messages={'required': 'Please enter your email'})
@@ -13,9 +14,23 @@ class ForgotPage(forms.Form):
 	forgot_email = forms.EmailField(label='forgot_email', max_length=64, required=True, error_messages={'required': 'Please enter your email'})
 	
 class RegisterPage(forms.Form):
-	reg_email = forms.EmailField(label='reg_email', max_length=32, required=True, error_messages={'required': 'Please enter your Email'})
-	reg_username = forms.CharField(label='reg_username', max_length=32, required=True, error_messages={'required': 'Please enter your Username'})
-	reg_password = forms.CharField(label='reg_password', max_length=32, required=True, error_messages={'required': 'Please enter your Password'})
+	reg_email = forms.EmailField(label='Email Address', max_length=32, required=True, error_messages={'required': 'Please enter your Email'}, widget=forms.EmailInput(attrs={'placeholder': 'Email Address', 'class' : 'form-control'}))
+	reg_username = forms.CharField(label='Username', max_length=32, required=True, error_messages={'required': 'Please enter your Username'}, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class' : 'form-control'}))
+	reg_password = forms.CharField(label='Password', max_length=32, required=True, error_messages={'required': 'Please enter your Password'}, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class' : 'form-control'}))
+	reg_confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'class' : 'form-control'}))
+	class Meta:
+	    model=User
+	    fields=('username','email','password')
+
+	def clean(self):
+		cleaned_data = super(RegisterPage, self).clean()
+		password = cleaned_data.get("reg_password")
+		confirm_password = cleaned_data.get("reg_confirm_password")
+		if password != confirm_password:
+			raise forms.ValidationError(
+				"password and confirm_password does not match"
+			)
+		return self.cleaned_data()
 	
 class ChangePasswordPage(forms.Form):
 	change_currentPassword = forms.CharField(label='change_currentPassword', max_length=32, required=True, error_messages={'required': 'Please enter your Username'})

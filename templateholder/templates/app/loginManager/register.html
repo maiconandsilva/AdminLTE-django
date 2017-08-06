@@ -37,23 +37,39 @@
 
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
-
+    
     <form action="{% url 'loginManager:register_user' %}" method="post">
       {% csrf_token %}
+      {% if form.errors %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> We have an Issue!</h4>
+        {{ form.non_field_errors }}
+              <ul>
+                {% for field in form %}
+                  {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                {% endfor %}
+              </ul>
+      </div>
+      {% endif %}
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Full name">
+        {{ registerForm.reg_username }}
+        <!--<input type="text" class="form-control" placeholder="Full name">-->
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        {{ registerForm.reg_email }}
+        <!--<input type="email" class="form-control" placeholder="Email">-->
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        {{ registerForm.reg_password }}
+        <!--<input type="password" class="form-control" placeholder="Password">-->
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Retype password">
+      {{ registerForm.reg_confirm_password }}
+        <!--<input type="password" class="form-control" placeholder="Retype password">-->
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">

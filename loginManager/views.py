@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+from django.conf import settings
 
 from .forms import *
 from . import utils
@@ -12,6 +13,7 @@ from . import utils
 # Create your views here.
 def user_login(request, error=None, info=None, success=None, warning=None):
 	context = {'title':'AdminLTE 2 | Login'}
+	logout(request)
 	if error:
 		context['error'] = str(error)
 	if info:
@@ -20,9 +22,9 @@ def user_login(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'app/loginManager/login.html', {'context': context})
+	return render(request, 'app/loginManager/login.html', {'context': context, 'loginForm': LoginPage})
 
-def user_register(request, error=None, info=None, success=None, warning=None):
+def user_register(request, error=None, info=None, success=None, warning=None, form=None):
 	context = {'title':'AdminLTE 2 | Register'}
 	if error:
 		context['error'] = str(error)
@@ -32,7 +34,9 @@ def user_register(request, error=None, info=None, success=None, warning=None):
 		context['warning'] = str(warning)
 	if success:
 		context['success'] = str(success)
-	return render(request, 'app/loginManager/register.html', {'context': context})
+	if form:
+		return render(request, 'app/loginManager/register.html', {'context': context, 'registerForm': RegisterPage, 'form': form})
+	return render(request, 'app/loginManager/register.html', {'context': context, 'registerForm': RegisterPage})
 
 def login_user(request):
 	if request.method == 'POST':
@@ -44,7 +48,9 @@ def login_user(request):
 			user = authenticate(username=username, password=password)
 			if user:
 				login(request, user)
-				return HttpResponseRedirect(reverse('webappdemo:dashboard'))
+				if form.cleaned_data['remember_me']:
+					settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+				return HttpResponseRedirect(reverse('dataTables:table'))
 			else:
 				error = "User doesn't exist or invalid password"
 				return user_login(request, error)
@@ -61,6 +67,7 @@ def check_userExists(request):
 		else:
 			return HttpResponse("true")
 
+#TODO: send New User email congrats on signing up
 def register_user(request):
 	if request.method == 'POST':
 		form = RegisterPage(request.POST)
@@ -73,8 +80,7 @@ def register_user(request):
 			user.save()
 			return user_login(request, None, None, "Sign in!")
 		else:
-			error = "Form isn't valid"
-			return user_login(request, error)
+			return user_register(request,form=form)
 	else:
 		error = "Something went horribly wrong"
 		return user_login(request,error)

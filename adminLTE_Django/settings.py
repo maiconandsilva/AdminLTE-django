@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'webappdemo.apps.WebappdemoConfig',
     'loginManager.apps.LoginmanagerConfig',
     'dataTables.apps.DatatablesConfig',
+    'fileUpload.apps.FileuploadConfig',
     'templateholder.apps.TemplateholderConfig'
 ]
 
@@ -123,3 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+LOGIN_URL='/loginManager/login/'
+LOGIN_REDIRECT_URL='/loginManager/login/'

@@ -20,5 +20,6 @@ urlpatterns = [
 	url(r'^', include('webappdemo.urls')),
 	url(r'^loginManager/', include('loginManager.urls')),
 	url(r'^dataTables/', include('dataTables.urls')),
+    url(r'^fileupload/', include('fileUpload.urls')),
     url(r'^admin/', admin.site.urls),
 ]
