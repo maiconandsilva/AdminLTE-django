@@ -29,4 +29,4 @@ Execução
 
 Observações
 ============
-* ** Os apps loginManager, dataTables e fileUpload estão em fase experimental então podem ocorrer alguns bugs.**
+* **Os apps loginManager, dataTables e fileUpload estão em fase experimental então podem ocorrer alguns bugs.**
