@@ -1,36 +1,32 @@
-# adminLTE_Django
-Easy AdminLTE integration with Django 1.11
-This package provides an easy way to quickly set up [AdminLTE](https://almsaeedstudio.com) with Django. 
+# adminLTE_Django exemplo
 
-The only requirements are listed in requirements.txt, 
-so you can start building your admin panel immediately after a pip isntall -r requirements.txt. 
+Exemplo de integração usando [Python 3.6](https://www.python.org/downloads) e **Django 1.11** com o template [AdminLTE 2.4.2](https://github.com/almasaeed2010/AdminLTE).
 
-What's Coming
+Exemplo baseado no repositório [adminLTE_Django](https://github.com/drfrink/adminLTE_Django).
+
+
+Instalação e execução
+---------------------------
+1. Fazer o download deste repositório
+2. Configurar o módulo **virtualEnv** e ativá-lo
+    1. Se não tiver o módulo instalado, basta executar o comando 'pip install virtualenv' no terminal
+    2. Navegar até o diretório do projeto - `cd (diretório do projeto)` - e executar o comando `virtualenv -p (caminho do executável de python 3.6) ENV`
+    3. Ativar a virtualização do ambiente com o comando:
+        1. `Scripts\activate.bat` **(No Windows)**
+        2. `bash Scripts/activate.sh` **(No Linux)**
+3. Executar o comando `pip install -r requirements.txt` para instalar as dependências
+4. Executar o comando `python manage.py runserver` para executar o projeto
+
+
+Execução
+---------------------------
+1. Navegar até o diretório do projeto - `cd (diretório do projeto)`
+2. Ativar a virtualização do ambiente com o comando:
+   1. `Scripts\activate.bat` (No Windows)
+   2. `bash Scripts/activate.sh` (No Linux)
+3. Executar o comando `python manage.py runserver` para executar o projeto
+
+
+Observações
 ============
-* loginManager app
-  * Add Forget Password Template
-  * Add Forget Username Template
-  * Add Email Setup Documentaiton
-* dataTables app
-  * datatableworker Documentation
-  * datatabletemplate with javascript to convert fields to columns and add to html
-* Convert demo.js to django/python code
-* Set up backend for Mobile (Django Rest Framework)
-
-
-Installation
-============
-1) Download the repository and unzip
-2) Set up the virtualEnv if you desire one and activate it
-3) Run the command 'pip install -r requirements.txt'
-4) Run the command 'python manage.py runserver'
-
-ReadMe Updates Coming:
-* Installation
-* Updating
-* Usage
-* Configuration
-  * Menu
-  * Styles
-  * Plugins
-* Issues, Questions, Pull Requests
+* ** Os apps loginManager, dataTables e fileUpload estão em fase experimental então podem ocorrer alguns bugs.**

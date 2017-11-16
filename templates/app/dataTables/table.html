@@ -1,0 +1,176 @@
+{% extends "app/base.html" %}
+{% load staticfiles %}
+
+{% block styles2 %}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{% static 'plugins/datatables/dataTables.bootstrap.css' %}">
+    <!-- Dropzone.js -->
+    <link href="{% static 'plugins/dropzone/dist/min/dropzone.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content_wrapper %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Data Tables
+            <small>advanced tables</small>
+        </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Demo Table</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                               id="demoTable">
+                            <thead>
+                            <tr>
+                                <th> File Name</th>
+                                <th> Hash</th>
+                                <th> Uploaded By</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        {% include "app/fileUpload/fileUploadRow.html" %}
+    </section>
+    <!-- /.content -->
+
+
+{% endblock %}
+
+
+{% block js_plugins2 %}
+    <!-- DataTables -->
+    <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+    <!-- Dropzone.js -->
+    <script src="{% static 'plugins/dropzone/dist/min/dropzone.min.js' %}"></script>
+    <!-- page script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // gets cookie value from cookie key (name)
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    console.log(cookies);
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            //this is used for (need to make sure reason is checking page itself)
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            // this is used to safely send json data from jQuery/js
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                    }
+                }
+            });
+
+            // gets us the nth index of a character in a string so "anna",'a',2 will give us 4
+            function nthIndex(str, pat, n) {
+                var L = str.length, i = -1;
+                while (n-- && i++ < L) {
+                    i = str.indexOf(pat, i);
+                    if (i < 0) break;
+                }
+                return i;
+            }
+
+            function getUsername(userPk) {
+                for (var i = 0; i < userDataJson.length; i++) {
+                    if (userDataJson[i].pk == userPk) {
+                        return userDataJson[i].fields.username;
+                    }
+                }
+            }
+
+            //init the datatable
+            $('#demoTable').DataTable();
+
+            var demoDataJson = {};
+            var userDataJson = {};
+
+            //send data to async worker to format data from server
+            if (typeof(Worker) !== "undefined") {
+                var demoData = '{{ context.demoItems|escapejs }}';
+                var userData = '{{ context.usernames|escapejs }}';
+                var worker = new Worker("{% static 'app/js/datatable-worker.js' %}");
+                demoDataJson = JSON.parse(demoData);
+                userDataJson = JSON.parse(userData);
+                console.log(demoDataJson);
+                console.log(userDataJson);
+                worker.postMessage({
+                    columns: {
+                        'File Name': {
+                            normal: true,
+                            field: 'file_name'
+                        },
+                        'Hash': {
+                            normal: true,
+                            field: 'hash'
+                        },
+                        'Uploaded By': {
+                            normal: true,
+                            field: 'user'
+                        },
+                        Actions: {
+                            multiBtn: true,
+                            order: [
+                                'editBtn',
+                                'trashBtn'
+                            ],
+                            field: 'active'
+                        }
+                    },
+                    jdata: demoDataJson,
+                    jobj: true,
+                    editname: 'demo',
+                    baseUrl: document.location.origin,
+                });
+                worker.onmessage = function (e) {
+                    var t = $('#demoTable').DataTable()
+                    console.log(e.data);
+                    for (var i = 0; i < e.data.length; i++) {
+                        row = e.data[i];
+                        row[2] = getUsername(row[2]);
+                        e.data[i] = row;
+                    }
+                    t.rows.add(e.data).draw(false);
+                    //$('body').addClass('loaded');
+                };
+            } else {
+                alert("Sorry, Your brower can't be used with this site");
+            }
+        });
+    </script>
+{% endblock %}
