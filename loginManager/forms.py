@@ -30,7 +30,7 @@ class RegisterPage(forms.Form):
 			raise forms.ValidationError(
 				"password and confirm_password does not match"
 			)
-		return self.cleaned_data()
+		return self.cleaned_data
 	
 class ChangePasswordPage(forms.Form):
 	change_currentPassword = forms.CharField(label='change_currentPassword', max_length=32, required=True, error_messages={'required': 'Please enter your Username'})
