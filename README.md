@@ -1,4 +1,4 @@
-# adminLTE_Django exemplo
+# AdminLTE with Django
 
 Exemplo de integração usando [Python 3.6](https://www.python.org/downloads) e **Django 1.11** com o template [AdminLTE 2.4.2](https://github.com/almasaeed2010/AdminLTE).
 
