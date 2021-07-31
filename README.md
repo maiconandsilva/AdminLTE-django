@@ -34,3 +34,7 @@ ReadMe Updates Coming:
   * Styles
   * Plugins
 * Issues, Questions, Pull Requests
+
+---
+
+Based on [adminLTE_Django](https://github.com/drfrink/adminLTE_Django)

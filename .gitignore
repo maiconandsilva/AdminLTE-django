@@ -8,7 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
+[Ee][Nn][Vv]/
 build/
 develop-eggs/
 downloads/
@@ -99,3 +99,15 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#Node stuff
+*.DS_Store
+*.zip
+.idea
+.sass-cache/
+nbproject/
+nbproject/private/
+node_modules/
+ad.js
+TODO
+test.html

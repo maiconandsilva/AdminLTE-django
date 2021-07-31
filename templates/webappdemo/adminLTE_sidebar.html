@@ -1,0 +1,240 @@
+{% load staticfiles %}
+
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{ request.user }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li
+                    {% if request.resolver_match.url_name == 'dashboard' or request.resolver_match.url_name == 'dashboard2' %}
+                        class="active treeview" {% else %} class="treeview"  {% endif %}>
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'dashboard' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:dashboard' %}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                    <li {% if request.resolver_match.url_name == 'dashboard2' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:dashboard2' %}"><i class="fa fa-circle-o"></i> Dashboard v2</a>
+                    </li>
+                </ul>
+            </li>
+            <li {% if request.resolver_match.url_name == 'widgets' %} class="active" {% endif %}>
+                <a href="{% url 'webappdemo:widgets' %}">
+                    <i class="fa fa-th"></i> <span>Widgets</span>
+                    <span class="pull-right-container">
+            <small class="label pull-right bg-green">new</small>
+          </span>
+                </a>
+            </li>
+            <li
+                    {% if request.resolver_match.url_name == 'chartjs' or request.resolver_match.url_name == 'morrisCharts' or request.resolver_match.url_name == 'flotCharts' or request.resolver_match.url_name == 'inlineCharts' %}
+                        class="active treeview" {% else %} class="treeview" {% endif %} >
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Charts</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'chartjs' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:chartjs' %}"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                    <li {% if request.resolver_match.url_name == 'morrisCharts' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:morrisCharts' %}"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li {% if request.resolver_match.url_name == 'flotCharts' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:flotCharts' %}"><i class="fa fa-circle-o"></i> Flot</a></li>
+                    <li {% if request.resolver_match.url_name == 'inlineCharts' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:inlineCharts' %}"><i class="fa fa-circle-o"></i> Inline charts</a>
+                    </li>
+                </ul>
+            </li>
+            <li
+                    {% if request.resolver_match.url_name == 'buttons' or request.resolver_match.url_name == 'general' or request.resolver_match.url_name == 'icons' or request.resolver_match.url_name == 'modals' or request.resolver_match.url_name == 'sliders' or request.resolver_match.url_name == 'timeline' %}
+                        class="active treeview" {% else %} class="treeview" {% endif %}>
+                <a href="#">
+                    <i class="fa fa-laptop"></i>
+                    <span>UI Elements</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'general' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:general' %}"><i class="fa fa-circle-o"></i> General</a></li>
+                    <li {% if request.resolver_match.url_name == 'icons' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:icons' %}"><i class="fa fa-circle-o"></i> Icons</a></li>
+                    <li {% if request.resolver_match.url_name == 'buttons' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:buttons' %}"><i class="fa fa-circle-o"></i> Buttons</a></li>
+                    <li {% if request.resolver_match.url_name == 'sliders' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:sliders' %}"><i class="fa fa-circle-o"></i> Sliders</a></li>
+                    <li {% if request.resolver_match.url_name == 'timeline' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:timeline' %}"><i class="fa fa-circle-o"></i> Timeline</a></li>
+                    <li {% if request.resolver_match.url_name == 'modals' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:modals' %}"><i class="fa fa-circle-o"></i> Modals</a></li>
+                </ul>
+            </li>
+            <li
+                    {% if request.resolver_match.url_name == 'general_forms' or request.resolver_match.url_name == 'advanced' or request.resolver_match.url_name == 'editors' %}
+                        class="active treeview" {% else %} class="treeview"  {% endif %}>
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Forms</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'general_forms' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:general_forms' %}"><i class="fa fa-circle-o"></i> General Elements</a>
+                    </li>
+                    <li {% if request.resolver_match.url_name == 'advanced' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:advanced' %}"><i class="fa fa-circle-o"></i> Advanced Elements</a>
+                    </li>
+                    <li {% if request.resolver_match.url_name == 'editors' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:editors' %}"><i class="fa fa-circle-o"></i> Editors</a></li>
+                </ul>
+            </li>
+            <li {% if request.resolver_match.url_name == 'simple' or request.resolver_match.url_name == 'data' %}
+                class="active treeview" {% else %} class="treeview"  {% endif %}>
+                <a href="#">
+                    <i class="fa fa-table"></i> <span>Tables</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'simple' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:simple' %}"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+                    <li {% if request.resolver_match.url_name == 'data' %} class="active" {% endif %}><a
+                            href="{% url 'webappdemo:data' %}"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                </ul>
+            </li>
+            <li {% if request.resolver_match.url_name == 'calendar' %} class="active" {% endif %}>
+                <a href="{% url 'webappdemo:calendar' %}">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <span class="pull-right-container">
+            <small class="label pull-right bg-red">3</small>
+            <small class="label pull-right bg-blue">17</small>
+          </span>
+                </a>
+            </li>
+            <li
+                    {% if request.resolver_match.url_name == 'mailbox' or request.resolver_match.url_name == 'read-mail' or request.resolver_match.url_name == 'compose' %}
+                        class="active treeview" {% else %} class="treeview"  {% endif %}>
+                <a href="#">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'mailbox' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:mailbox' %}">Inbox
+                        <span class="pull-right-container">
+                <span class="label label-primary pull-right">13</span>
+              </span>
+                    </a>
+                    </li>
+                    <li {% if request.resolver_match.url_name == 'compose' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:compose' %}">Compose</a></li>
+                    <li {% if request.resolver_match.url_name == 'read-mail' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:read-mail' %}">Read</a></li>
+                </ul>
+            </li>
+            <li
+                    {% if request.resolver_match.url_name == 'invoice' or request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'login' or request.resolver_match.url_name == 'register' or request.resolver_match.url_name == 'lockscreen' or request.resolver_match.url_name == 'page404' or request.resolver_match.url_name == 'page500' or request.resolver_match.url_name == 'blank' or request.resolver_match.url_name == 'pace' %}
+                        class="active treeview" {% else %} class="treeview" {% endif %} >
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Examples</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li {% if request.resolver_match.url_name == 'invoice' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:invoice' %}"><i class="fa fa-circle-o"></i> Invoice</a></li>
+                    <li {% if request.resolver_match.url_name == 'profile' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:profile' %}"><i class="fa fa-circle-o"></i> Profile</a></li>
+                    <li {% if request.resolver_match.url_name == 'login' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:login' %}"><i class="fa fa-circle-o"></i> Login</a></li>
+                    <li {% if request.resolver_match.url_name == 'register' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:register' %}"><i class="fa fa-circle-o"></i> Register</a></li>
+                    <li {% if request.resolver_match.url_name == 'lockscreen' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:lockscreen' %}"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+                    <li {% if request.resolver_match.url_name == 'page404' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:page404' %}"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+                    <li {% if request.resolver_match.url_name == 'page500' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:page500' %}"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                    <li {% if request.resolver_match.url_name == 'blank' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:blank' %}"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+                    <li {% if request.resolver_match.url_name == 'pace' %} class="active" {% endif %} ><a
+                            href="{% url 'webappdemo:pace' %}"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-share"></i> <span>Multilevel</span>
+                    <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Level One
+                            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+                </ul>
+            </li>
+            <li class="header">LABELS</li>
+            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
